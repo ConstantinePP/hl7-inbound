@@ -1,0 +1,83 @@
+info:
+  build:
+    artifact: ${project.artifactId}
+    name: ${project.name}
+    version: ${project.version}
+    build_number: "@BUILD_NUMBER@"
+
+spring:
+  main.banner_mode: off
+  datasource:
+    ping:
+      url: jdbc:mariadb://127.0.0.1:3306/patientping?serverTimezone=America/New_York
+      username: patientping
+      driver-class-name: org.mariadb.jdbc.Driver
+      testWhileIdle: true
+      testOnBorrow: true
+      testOnReturn: false
+      validationQuery: SELECT 1
+      validationInterval: 30000
+      timeBetweenEvictionRunsMillis: 5000
+      maxActive: 10
+      minIdle: 1
+      maxIdle: 5
+      maxWait: 5
+      initialSize: 5
+      removeAbandonedTimeout: 60
+      removeAbandoned: true
+      logAbandoned: true
+      minEvictableIdleTimeMillis: 30000
+      jmxEnabled: true
+      jdbcInterceptors: org.apache.tomcat.jdbc.pool.interceptor.ConnectionState; org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer; org.apache.tomcat.jdbc.pool.interceptor.SlowQueryReportJmx(threshold=10000)
+    inbound:
+      url: jdbc:mariadb://127.0.0.1:3306/mirth_hl7?serverTimezone=America/New_York
+      username: patientping
+      driver-class-name: org.mariadb.jdbc.Driver
+      testWhileIdle: true
+      testOnBorrow: true
+      testOnReturn: false
+      validationQuery: SELECT 1
+      validationInterval: 30000
+      timeBetweenEvictionRunsMillis: 5000
+      maxActive: 10
+      minIdle: 1
+      maxIdle: 5
+      maxWait: 5
+      initialSize: 5
+      removeAbandonedTimeout: 60
+      removeAbandoned: true
+      logAbandoned: true
+      minEvictableIdleTimeMillis: 30000
+      jmxEnabled: true
+      jdbcInterceptors: org.apache.tomcat.jdbc.pool.interceptor.ConnectionState; org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer; org.apache.tomcat.jdbc.pool.interceptor.SlowQueryReportJmx(threshold=10000)
+
+server:
+  port: 9094
+
+
+data:
+  writeInbound: false
+
+management:
+  context-path: /management
+  port: 8081
+  security.enabled: false
+
+security.user:
+  name: patientping
+  password: patientping
+
+matchingtool:
+  server: localhost:9096
+  username: patientping
+
+
+logging:
+  pattern.level: "%X{message_control_id} %5p"
+
+# override_XXX properties will be injected in the native kafka client
+# XXX needs to match the name of the property as described in the kafka documentation, but with "_" instead of "." (because of the spring injection mechanism for properties)
+kafka:
+  consumer:
+    override_enable_auto_commit: false
+    override_max_poll_records: 10

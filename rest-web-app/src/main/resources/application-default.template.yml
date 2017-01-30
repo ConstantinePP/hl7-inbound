@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    ping:
+      url: jdbc:mariadb://127.0.0.1:3306/patientping?serverTimezone=America/New_York
+      username: patientping
+      password: REPLACE_ME
+    qdc:
+      url: jdbc:mariadb://127.0.0.1:3306/patientping?serverTimezone=America/New_York
+      username: patientping
+      password: REPLACE_ME
+
+es:
+  ssl:
+    enabled: false
+  cluster:
+    name: REPLACE_ME
+
+matchingtool:
+  password: REPLACE_ME

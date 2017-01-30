@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>hl7inbound</artifactId>
+        <groupId>com.patientping.hl7.hl7inbound</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>process</artifactId>
+    <name>HL7 Inbound Process</name>
+    <description>
+        The library module that consolidates the implementation of the business logic for the inbound HL7 message
+        processing
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- for now, reusing original libs -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.patientping</groupId>
+            <artifactId>ping_hl7</artifactId>
+            <version>${ping.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.patientping</groupId>
+            <artifactId>ping_elastic</artifactId>
+            <version>${ping.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.patientping</groupId>
+            <artifactId>ping_api_ext</artifactId>
+            <version>${ping.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>${elasticsearch.version}</version>
+        </dependency>
+    </dependencies>
+</project>
